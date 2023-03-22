@@ -13,7 +13,7 @@
    <nav class="navbar navbar-expand-lg fixed-top bg-info text-dark">
       <div class="container-fluid">
          <div class="container-fluid">
-            <a class="navbar-bran p alt=" width="30" height="24" class="d-inline-block align-text-top">🌡️ Hot🥵 or
+            <a class="navbar-brand" href="#" width="30" height="24" class="d-inline-block align-text-top">🌡️ Hot🥵 or
                Cold🥶 Weather App ☂️</a><br>
             <form id="search-form">
                <input type="text" id="search-input" placeholder="Enter a city name" />
@@ -22,7 +22,19 @@
          </div>
       </div>
    </nav>
+   <h1 id="location"></h1>
+   <div id="forecast"></div>
    <script src="./assets/script.js"></script>
+   <script>
+      const searchForm = document.querySelector('#search-form');
+      searchForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const searchInput = document.querySelector('#search-input');
+        const cityName = searchInput.value;
+        const data = await getWeatherData(cityName);
+        displayWeatherData(data);
+      });
+   </script>
 </body>
 
 </html>
