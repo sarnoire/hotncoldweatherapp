@@ -6,6 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <title>Hot or Cold Weather App</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" integrity="sha512-Absue5lo5+eNy5r5rApE5r5IrxgNwvAWKZ1D2Z3GqWgX9KxErmc50/AMRyBtGHpgD8g7vOJgHsRzK56TgPf8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link rel="stylesheet" href="./assets/style.css" />
 </head>
 
@@ -15,7 +16,7 @@
          <div class="container-fluid">
             <a class="navbar-brand" href="#" width="30" height="24" class="d-inline-block align-text-top">🌡️ Hot🥵 or
                Cold🥶 Weather App ☂️</a><br>
-            <form id="search-form">
+               <form id="search-form">
                <input type="text" id="search-input" placeholder="Enter a city name" />
                <button type="submit">Search</button>
             </form>
@@ -28,11 +29,11 @@
    <script>
       const searchForm = document.querySelector('#search-form');
       searchForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const searchInput = document.querySelector('#search-input');
-        const cityName = searchInput.value;
-        const data = await getWeatherData(cityName);
-        displayWeatherData(data);
+         event.preventDefault();
+         const searchInput = document.querySelector('#search-input');
+         const cityName = searchInput.value;
+         const data = await getWeatherData(cityName);
+         displayWeatherData(data);
       });
    </script>
 </body>
