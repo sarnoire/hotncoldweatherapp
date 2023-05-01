@@ -1,9 +1,18 @@
-const APIKey = "12341234123412341234123412341234";
+const APIKey = "f930239e29081bfdab855132d34c036f";
 const queryURL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 
-async function getWeatherData(cityName) {
-  const url = `${queryURL}?q=${cityName}&appid=${APIKey}`;
+async function getWeatherData(cityName, latitude, longitude) {
+  let url;
+  if (cityName) {
+    url = `${queryURL}?q=${cityName}&appid=${APIKey}`;
+  } else if (latitude && longitude) {
+    url = `${queryURL}?lat=${latitude}&lon=${longitude}&appid=${APIKey}`;
+  } else {
+    console.error('No location data provided!');
+    return;
+  }
+
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -13,6 +22,7 @@ async function getWeatherData(cityName) {
     console.error(error);
   }
 }
+
 
 
 // display weather data in the UI
@@ -54,7 +64,7 @@ function getWeatherForUserLocation() {
   navigator.geolocation.getCurrentPosition(
     async (position) => {
       const { latitude, longitude } = position.coords;
-      const data = await getWeatherData(latitude, longitude);
+      const data = await getWeatherData(null, latitude, longitude);
       displayWeatherData(data);
     },
     (error) => {
@@ -62,6 +72,5 @@ function getWeatherForUserLocation() {
     }
   );
 }
-
 
 getWeatherForUserLocation();
